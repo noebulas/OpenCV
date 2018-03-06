@@ -97,10 +97,10 @@ while True:
 	# draw the detections on the frame)
 	if detections is not None:
 		# loop over the detections
-		for i in np.arange(0, detections.shape[2]):
+		for i in np.arange(0, detections.shape[1]):#changing this number changes number of detections
 			# extract the confidence (i.e., probability) associated
 			# with the prediction
-			confidence = detections[0, 0, i, 2]
+			confidence = detections[0, 0, i, 1]#change this number with number in detections
 
 			# filter out weak detections by ensuring the `confidence`
 			# is greater than the minimum confidence
@@ -123,6 +123,7 @@ while True:
 			y = startY - 15 if startY - 15 > 15 else startY + 15
 			cv2.putText(frame, label, (startX, y),
 				cv2.FONT_HERSHEY_SIMPLEX, 0.5, COLORS[idx], 2)
+			print(label)
 
 	# show the output frame
 	cv2.imshow("Frame", frame)
